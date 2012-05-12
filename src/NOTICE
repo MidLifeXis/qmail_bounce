@@ -1,0 +1,30 @@
+# Time-stamp: <97/06/11 08:05:46 wightman>
+# Version: 0.0alpha6
+#
+# Copyright notice:
+#
+# This set of programs is Copyright (c) 1997 by Brian T. Wightman 
+# <wightman@acm.org>.  Any distribution of this software (outside
+# of the method listed below) is prohibited.
+#
+# You may use this application for any purpose, as long as you do not
+# distribute it.  I do not want this bre-beta version of this software
+# "in the wild" at this point, at least without knowlege of where it
+# has been distributed to or what changes have been made to it.
+#
+# Changes will be made in the interface, configuration, and internals of
+# this application in future versions, but the general idea will be
+# consistant.
+#
+# The author assumes no responsibility for damage that may occur by use of
+# this program, either intentional or accidental.  In other words - USE AT 
+# YOUR OWN RISK.
+#
+# The newest distribution may be retrieved (currently alpha6) by
+# going to the web page
+# "http://www.uwosh.edu/faculty_staff/wightman/bouncer/".  The
+# location of this page will be changing in the near future (job
+# relocation), but I will announce the change as soon as I have it
+# (hopefully it will be "http://www.acm.org/~wightman/bouncer/", but
+# that is not guaranteed yet).
+#

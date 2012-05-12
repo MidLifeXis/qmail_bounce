@@ -1,0 +1,115 @@
+#!%%PERLBIN%%
+# bounce -- Handle bouncing warning messages to the sender about e-mail
+# Author          : Brian T. Wightman
+# Created On      : Thu May  8 22:02:48 1997
+# Last Modified By: Brian T. Wightman
+# Last Modified On: Wed Jun 11 08:07:33 1997
+# Update Count    : 32
+# Status          : 0.0alpha6
+# 
+# HISTORY
+# 
+
+if ((! $<) || (! $>)) {				   # Make sure that we are not
+    die "I cannot run with root privs.\n";	   # doing risky things
+}
+
+$version="%%VERSION%%";
+$top="%%PREFIX%%";
+$scanner="$top/lib/scanner.perl";
+$lookup="$top/lib/lookup.perl";
+$queuedir="%%QMAILDIR%%/queue";
+
+$whereami = "%%WHEREAMI%%";			   # should read control/...
+$totaltime="%%TOTALTIME%%";			   # should read control/...
+
+@extrarcpts=(%%EXTRARCPTS%%);			   # Extra recipients of bounce
+
+open(SCAN, "$scanner |");			   # Scan the queue
+while (chomp($line=<SCAN>)) {
+    ($msgid,$time) = split(/:/, $line);
+    open(LOOKUP, "$lookup $msgid|");		   # Get addresses associated
+    $from = "";					   # with the message
+    @to = ();
+    @done = ();
+    while(chomp($look = <LOOKUP>)) {
+	($type, $address) = split(/ /, $look, 2);
+	if ($type eq "F") {
+	    $from = $address;
+	} elsif ($type eq "D") {
+	    unshift(@done, $address);
+	} elsif ($type eq "T") {
+	    unshift(@to, $address);
+	} else {
+	    warn("Unknown address type \"$type\".\n");
+	}
+    }
+						   # Only generate a message
+						   # if someone will get it.
+    if (($from ne "") && ($from ne "\#\@")) {
+        &generate(*from, *to, *done, *time, *msgid)
+    }
+    close(LOOKUP);
+}
+close(SCAN);
+
+
+sub generate {
+    local(*from, *to, *done, *time, *msgid) = @_;
+    local($address, @sendto);
+
+						   # If Postmaster
+						   # should not get a
+						   # copy of this,
+						   # change this next
+						   # command and
+						   # remove the last
+						   # postmaster line.
+
+    @sendto = @extrarcpts;
+    unshift(@sendto, $from);
+
+    open(MAIL, "|-") || &do_exec("%%QMAILDIR%%/bin/datemail", 
+				 "-f", "#@[]",
+				 @sendto);
+
+    print MAIL <<EOM;
+From: MAILER STATUS REPORTER <MAILER-DAEMON\@$whereami>
+To: $from
+X-bouncer-version: $version
+Subject: QMAIL> Delivery delay notification
+
+Your message has been enqueued by $whereami, but has been 
+undeliverable for at least $time to the following
+recipients:
+
+EOM
+
+    foreach $address (@to) {
+	print MAIL "\t$address\n";
+    }
+
+print MAIL <<EOM;
+
+The mail system will continue delivery attempts for a total
+of $totaltime.
+
+Your original message headers are included below.
+-------------------------------------------------
+EOM
+
+    open(MESG, "< $queuedir/mess/$msgid");
+    while(($line = <MESG>) && ($line !~ /^$/)) {
+	print MAIL $line;
+    }
+    close(MESG);
+    
+    close(MAIL);
+}
+
+# Executes a program and exits with a deferral if it could not.
+sub do_exec {
+    exec(@_);
+    print STDERR "Unable to execute mailer.: $!\n";
+    exit 111;
+}

@@ -1,0 +1,49 @@
+* Introduction
+
+In the mid 1990s, I was serving as a system administrator at a college
+in the midwest.  I used qmail on the network to allow users more
+control over where mail was delivered.  From a system administration
+point of view, it was wasier to manage than sendmail (I am not certain
+that I would make the same choice today), the queue was very easy to
+understand, and it was FAST.
+
+This perl code is an addition that I made to the system to manage
+bounces in the queue.
+
+Today's internet (approaching mid 2010's) is quite different, and I
+would not recommend using this utility in anything other than a point
+solution where you control and know that the senders are who they say
+they are.  Not following this advice may get you banned for being a
+spam source, as your system will be able to be used as a gateway for
+bounce spam.
+
+* Description
+
+This script is an early Perl5 script that monitors a qmail mail
+(http://www.qmail.org/) queue, periodicaly sending email to senders of
+mail in the queue letting them know that the mail has been delayed.
+
+As mentioned above, it is probably not a good idea to use this in
+anything other than a very controlled environment.
+
+In 2001, I transferred maintenance of the software to
+kenny@muspellsheim.net (see
+http://aust.in/software/qmail_bounce/index.html).
+
+I currently only have the alpha 6 version of this software available.
+As I find earlier versions of the software, I will merge them in.
+
+* Disclaimer
+
+Use at your own risk.  This application is provided with no claims of
+reliability and comes with no warranty.  The user of this software
+assumes all risk associated with its use.
+
+* Contact Information
+
+  - Brian Wightman
+  - http://www.wightmanfam.org/
+  - MidLifeXis@wightmanfam.org
+  - https://github.com/MidLifeXis/
+
+* End of file
