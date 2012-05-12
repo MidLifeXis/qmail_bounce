@@ -1,0 +1,76 @@
+Time-stamp: <97/06/11 08:05:25 wightman>
+Version: 0.0alpha6
+
+INFORMATION
+===========
+
+See the file NOTICE for copyright and distribution information.
+
+This is version 0.0alpha6 of Brian Wightman's <wightman@acm.org> qmail
+queue maintenance program set.  Currently the only function present in
+the program set is a delay notification program.  This program handles
+delay notification in a fairly configurable manner, allowing the queue
+maintainer to set notification times and messages.
+
+For this to work (as currently written), a slight addition to the
+queue directory needs to be made.  The directory "state" is added to
+the queue directory so that this program can keep some information
+about the messages between runs.
+
+I currently run this program every hour (see the crontab file for more
+information).  It could be run more or less frequently depending on
+the needs of the site.  However, at this time queue locking is not
+done, so if you run this program often, you could get a collision.
+
+
+INSTALLATION INSTRUCTIONS
+=========================
+
+To install this package, go to one of the following locations, read
+the informational document, and download the program:
+
+	http://www.uwosh.edu/faculty_staff/wightman/bouncer/
+
+Next, unpack the distribution into a temporary directory.
+
+	% gzip -dc qmail_bounce-0.0alpha6.tar.gz | tar xvf -
+
+Change directories into qmail_bounce-0.0alpha6
+
+	% cd qmail_bounce-0.0alpha6
+
+Edit the Makefile and set the location variables appropriately.
+
+	% vi Makefile
+
+Edit the bounce schedule in scanner.perl.  Make sure to reflect the
+schedule in both @bouncetimes and @bouncewords.  The first entry for
+each of these arrays is 0 - it is basically used to make the program
+logic easier.
+
+	% vi scanner.perl
+
+Pre-process the scripts to set any internal variables
+
+	% make
+
+Install the program
+
+	% /bin/su
+	# make install
+	# exit
+
+Install the cron job (this goes into the cron entry for qmails).  See
+the crontab file for suggested use.
+
+	% /bin/su
+	# crontab -e qmails
+
+That's it.  At this time there are no pre-installation tests.
+
+If you have any problems, comments, suggestions, etc. feel free to
+contact me at wightman@acm.org.  I may not be able to answer you
+immediately (stuff that pays the bills comes first), but I will do my
+best to get back to you.
+
+

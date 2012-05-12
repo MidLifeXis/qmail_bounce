@@ -1,0 +1,138 @@
+Time-stamp: <97/06/11 08:07:24 wightman>
+Version: 0.0alpha6
+
+Known problems with or wanted modifications for my bouncer scripts.
+See PEOPLE for a list of abbreviations.  Only the first report of a
+bug or request is noted here.
+
+Submit date/by	Description			Fix date/by	Notes
+==============	==============================	==============	==============
+19970611  btw	Release alpha6.			19970611 btw
+
+19970611  pk	Superfluous $from in datemail	19970611 btw	Doh!
+		call.
+
+19970610  alm	Fix possible problem with 	19970610 btw	Not sure if
+		ezmlm and bouncer.  Not sure			this fixes his
+		if this is actual cause.			problem.  Need
+		Causes funky addresses to be			him to test.
+		generated with ezmlm.				Removed empty
+								argument to 
+								datemail.
+
+19970610  alm	Fix installation problem (not	19970610  btw	
+		creating state directory - 
+		again).
+
+19970610  btw	Release beta1 to the list one
+		week after last major alpha is
+		released.
+
+19970610  btw	Release alpha4 to the list.	19970610  btw	Sent notice.
+
+19970610  btw	Use example.com as the default	19970610  btw	"Official" IANA
+		domain name.					dummy address??
+
+19970610  btw	Have installation abort if	19970610  btw	Add check rule
+		domain name is not changed.			to Makefile.
+
+19970608  bbn	Respond to errors-to: header			Not sure about
+								this.  Was told
+								this header is
+								depreciated.
+
+								Will not 
+								support this.
+								Sendmail hack.
+
+19970608  bbn	Scanner.perl freezes randomly,	19970610  btw	Added check for
+		possibly when computing warn			! $thiswarn.
+		level to use ($thiswarn < 0,
+		goes into infinite loop).
+
+19970606  pk	QUEUEDIR used instead of	19970610  btw
+		QMAILDIR diring statedir gen.
+
+19970606  pk	Change sender to MAILER-DAEMON	19970610  btw	Changed message
+		instead of postmaster.
+
+19970606  pk	Fix path to datemail.		19970610  btw	Changed hard
+								path to substed
+								%%QMAILDIR%%...
+
+19970606  bbn	Make postmaster cc optional	19970610  btw	added 
+								%%EXTRARCPTS%%
+
+19970606  bbn	Don't create double bounces	19970610  btw	Changed sender
+								to #@[]
+
+19970606  bbn	Make install fails to create	19970610  btw	Missed some
+		state directory.				changed vars
+								in Makefile.
+
+19970604  gi	Have qmail_bounce set[ug]id to	
+		qmails/qmail if started as
+		root.
+
+19970603  btw	Release alpha3 to the list.	19970603  btw	Incorporate
+								bug fixes.
+
+19970603  btw	Library files installed		19970603  btw	Use EXEMODE in
+		without executable bit set.			Makefile, not
+								FILEMODE.
+
+19970602  btw	Create pre-activation testing
+		mechanism.
+
+19970602  btw	Add locking to the queue runs.
+
+19970528  btw	Add CVS tags to the files.
+
+19970528  btw	Have the queue notification
+		times read from a 
+		configuration file.
+
+19970528  btw   Create an installation script.	19970602  btw	Created a
+								Makefile and
+								installation
+								instructions.
+
+19970528  btw	Read setup files (queue 
+		lifetime, etc) from the qmail
+		control area.
+
+19970517  btw	Does not use (#N.N.N) error 
+		codes (yet).
+
+19970517  btw	Not sure how it will run on 
+		a large queue - my queues 
+		are fairly small and quickly 
+		emptied.
+
+19970517  btw	Document more than alpha 
+		level documentation.
+
+19970517  btw	Release alpha 2 to the qmail	19970602  btw
+		e-mail list for comments and
+		external testing.
+
+19970517  btw	document a little more than 	19970602  btw	Have some 
+		just my internal notes				internal and 
+								external docs.
+								Still needs 
+								work.
+
+19970517  btw	it runs entirely as root :(.  	19970528  btw	Only needed to
+		This should be changed before			have it run as
+		public release.					qmails (duh).
+
+19970517  btw	It attempts to send temporary	19970528  btw	Added if clause
+		failures if the sender is <>
+		or <#@>.  This should also be 
+		fixed :)
+
+19970508  btw	Get alpha1 to work.  This	19970510  btw
+		is UW Oshkosh internal code
+		only.  It will not be
+		released into the wild
+		until alpha2.

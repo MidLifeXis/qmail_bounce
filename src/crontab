@@ -1,0 +1,6 @@
+# Time-stamp: <97/06/11 08:07:51 wightman>
+# Version: 0.0alpha6
+#
+# Example crontab file for the qmail_bounce scripts.
+#
+0 * * * * /opt/qmail_bounce/bin/bounce
