@@ -41,7 +41,9 @@ assumes all risk associated with its use.
 
 * Contact Information
 
-Brian Wightman                    http://www.wightmanfam.org/
-MidLifeXis@wightmanfam.org     https://github.com/MidLifeXis/
+  - Brian Wightman
+  - http://www.wightmanfam.org/
+  - MidLifeXis@wightmanfam.org
+  - https://github.com/MidLifeXis/
 
 * End of file
