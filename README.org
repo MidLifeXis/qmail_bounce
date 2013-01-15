@@ -3,7 +3,7 @@
 In the mid 1990s, I was serving as a system administrator at a college
 in the midwest.  I used qmail on the network to allow users more
 control over where mail was delivered.  From a system administration
-point of view, it was wasier to manage than sendmail (I am not certain
+point of view, it was was easier to manage than sendmail (I am not certain
 that I would make the same choice today), the queue was very easy to
 understand, and it was FAST.
 
